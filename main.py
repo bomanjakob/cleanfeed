@@ -8,21 +8,14 @@ st.title('Cleanfeed')
 with open("sources.yml", "r") as stream:
         publ = yaml.safe_load(stream)
 
-def read_rss(url, tag):
+def read_rss(tag, url):
     feed = fp.parse(url)
-    entries = [entry for entry in feed.entries]
-    df = pd.DataFrame(entries)
+    df = pd.DataFrame([entry for entry in feed.entries])
     df["tag"] = tag
     cols = ['title', 'published', 'tag']
     return df[cols]
 
-tmp = []
-
-for key, item in publ.items():
-
-    tmp.append(read_rss(item['url'], key))
-
-merged = pd.concat(tmp, axis=0).sort_values(by='published', ascending=False)
+merged = pd.concat([read_rss(key, val['url']) for key, val in publ.items()], axis=0)
 
 st.dataframe(merged)
 
