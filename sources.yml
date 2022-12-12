@@ -1,0 +1,11 @@
+SvD:
+  url: https://www.svd.se/feed/articles.rss
+
+DN: 
+  url: https://www.dn.se/rss/
+
+Expressen:
+  url: https://feeds.expressen.se/nyheter/
+
+Aftonbladet:
+  url: https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/
